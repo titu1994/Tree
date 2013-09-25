@@ -34,6 +34,7 @@ int binarySearchRecursion(Node *p, int v);
 void addBinaryTreeRecursively(Node **p, int v);
 void addBinaryTreeIteratively(Node **p, int v);
 int largestBinaryTree(Node *p);
+int countBinaryTreeNodes(Node *p);
 
 int main(void) {
 	Node *root = NULL;
@@ -41,6 +42,7 @@ int main(void) {
 
 	setbuf(stdout, NULL);
 
+	printf("Enter choice : 1 for add Binary Search Tree Iteratively\n2 for add Binary Search Tree Recursively\n3 for display in Pre Order\n4 for display in In Order\n5 for display in Post Order\n6 to count no of BST Nodes\n7 to count Height of BST\n8 to check if it is Strict BST\n9 to check if it is Complete BST\n10 to add to Binary Tree Iteratively\11 to add to Binary Tree Recursively\n12 to find Largest element in BT\n14 to count number of nodes in BT\n");
 
 	do{
 		printf("Enter choice : ");
@@ -153,7 +155,9 @@ int main(void) {
 			break;
 
 		case 14:
-
+			// Count No of Binary Tree Nodes
+			ele = countBinaryTreeNodes(root);
+			printf("%d\n", ele);
 
 			break;
 
@@ -483,4 +487,14 @@ int largestBinaryTree(Node *p){
 
 }
 
+int countBinaryTreeNodes(Node *p){
 
+	if(p == NULL){
+		return 0;
+	}
+	else{
+		return 1 + countBinaryTreeNodes(p->left) + countBinaryTreeNodes(p->right);
+	}
+
+
+}
