@@ -16,13 +16,155 @@ typedef struct Node{
 	struct Node *left, *right;
 }Node;
 
+void addBinarySearchTree(Node **p, int v);
+void addBinarySearchTreeRecursively(Node **p, int v);
+void displayPreOrder(Node *p);
+void displayInOrder(Node *p);
+void displayPostOrder(Node *p);
 
+int countBinarySearchTreeNodes(Node *p);
+int heightBinarySearchTree(Node *p);
 
+int isStrictBinarySearchTree(Node *p);
+int isCompleteBinarySearchTree(Node *p);
+
+int binarySearchIterative(Node *p, int v);
+int binarySearchRecursion(Node *p, int v);
+
+void addBinaryTreeRecursively(Node **p, int v);
+void addBinaryTreeIteratively(Node **p, int v);
+int largestBinaryTree(Node *p);
 
 int main(void) {
-
+	Node *root = NULL;
+	int choice, ele;
 
 	setbuf(stdout, NULL);
+
+
+	do{
+		printf("Enter choice : ");
+		scanf("%d", &choice);
+
+		switch (choice) {
+		case 1:
+			// Add BST Iterative
+			printf("Enter a value\n");
+			scanf("%d", &ele);
+
+			addBinarySearchTree(&root, ele);
+			break;
+		case 2:
+			// Add BST Recursively
+			printf("Enter a value\n");
+			scanf("%d", &ele);
+
+			addBinarySearchTreeRecursively(&root, ele);
+
+			break;
+		case 3:
+			// Display Pre Order
+			displayPreOrder(root);
+			printf("\n");
+
+			break;
+		case 4:
+			// Display In Order
+			displayInOrder(root);
+			printf("\n");
+
+			break;
+		case 5:
+			// Display Post Order
+			displayPostOrder(root);
+			printf("\n");
+
+			break;
+		case 6:
+			// Count Binary Search Tree Node
+			ele = countBinarySearchTreeNodes(root);
+			printf("%d\n",ele);
+
+			break;
+		case 7:
+			// Height Binary Search Tree Node
+			ele = heightBinarySearchTree(root);
+			printf("%d\n", ele);
+
+			break;
+		case 8:
+			// Check if Strict Binary Search Tree
+
+			if(isStrictBinarySearchTree(root) == 1){
+				printf("Is Strict Binary Search Tree\n");
+			}
+			else{
+				printf("Not a Strict Binary Search Tree\n");
+			}
+
+			break;
+		case 9:
+			// Check if Complete Binary Search Tree
+
+			if(isCompleteBinarySearchTree(root) >= 1){
+				printf("Is Strict Binary Search Tree\n");
+			}
+			else{
+				printf("Not a Strict Binary Search Tree\n");
+			}
+
+			break;
+		case 10:
+			// Binary Search Tree Iteratively
+			printf("Enter a value to search\n");
+			scanf("%d", &ele);
+
+			if(binarySearchIterative(root, ele) == 1){
+				printf("Exists\n");
+			}
+			else{
+				printf("Does not exist\n");
+			}
+
+			break;
+		case 11:
+			// Add Binary Tree Iteratively
+
+			printf("Enter a value\n");
+			scanf("%d", &ele);
+
+			addBinaryTreeIteratively(&root, ele);
+			break;
+		case 12:
+			// Add Binary Tree Recursively
+
+			printf("Enter a value\n");
+			scanf("%d", &ele);
+
+			addBinaryTreeRecursively(&root, ele);
+
+			break;
+		case 13:
+			// Largest Binary Tree
+			ele = largestBinaryTree(root);
+
+			printf("Largest element is : %d",ele);
+
+			break;
+
+		case 14:
+
+
+			break;
+
+		default:{
+			choice = -1;
+		}
+		}
+
+
+	}while(choice != -1);
+
 
 	return EXIT_SUCCESS;
 }
@@ -136,33 +278,33 @@ void displayPostOrder(Node *p){
 
 }
 
-int countBinaryTreeNodes(Node *p){
+int countBinarySearchTreeNodes(Node *p){
 
 	if(p == NULL){
 		return 0;
 	}
 	else{
-		return 1 + countBinaryTreeNodes(p->left) + countBinaryTreeNodes(p->right);
+		return 1 + countBinarySearchTreeNodes(p->left) + countBinarySearchTreeNodes(p->right);
 	}
 
 }
 
-int heightBinaryTree(Node *p){
+int heightBinarySearchTree(Node *p){
 
 	if(p == NULL || (p->left == NULL && p->right == NULL)){
 		return 0;
 	}
 	else{
 
-		int x = heightBinaryTree(p->left);
-		int y = heightBinaryTree(p->right);
+		int x = heightBinarySearchTree(p->left);
+		int y = heightBinarySearchTree(p->right);
 
 		return (x>y)? (x + 1) : (y + 1);
 
 	}
 }
 
-int isStrictBinaryTree(Node *p){
+int isStrictBinarySearchTree(Node *p){
 
 	if(p == NULL){
 
@@ -176,15 +318,15 @@ int isStrictBinaryTree(Node *p){
 	}
 	else{
 
-		int x = isStrictBinaryTree(p->left);
-		int y = isStrictBinaryTree(p->right);
+		int x = isStrictBinarySearchTree(p->left);
+		int y = isStrictBinarySearchTree(p->right);
 
 		return x&&y;
 
 	}
 }
 
-int isCompleteBinaryTree(Node *p){
+int isCompleteBinarySearchTree(Node *p){
 
 	if(p == NULL){
 
@@ -196,8 +338,8 @@ int isCompleteBinaryTree(Node *p){
 	}
 	else{
 
-		int x = isCompleteBinaryTree(p->left);
-		int y = isCompleteBinaryTree(p->right);
+		int x = isCompleteBinarySearchTree(p->left);
+		int y = isCompleteBinarySearchTree(p->right);
 
 		return x != 0 && (x == y)? (x + 1) : 0;
 
