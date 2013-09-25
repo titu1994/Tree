@@ -42,7 +42,7 @@ int main(void) {
 
 	setbuf(stdout, NULL);
 
-	printf("Enter choice : 1 for add Binary Search Tree Iteratively\n2 for add Binary Search Tree Recursively\n3 for display in Pre Order\n4 for display in In Order\n5 for display in Post Order\n6 to count no of BST Nodes\n7 to count Height of BST\n8 to check if it is Strict BST\n9 to check if it is Complete BST\n10 to add to Binary Tree Iteratively\11 to add to Binary Tree Recursively\n12 to find Largest element in BT\n14 to count number of nodes in BT\n");
+	printf("Enter choice : 1 for add Binary Search Tree Iteratively\n2 for add Binary Search Tree Recursively\n3 for display in Pre Order\n4 for display in In Order\n5 for display in Post Order\n6 to count no of BST Nodes\n7 to count Height of BST\n8 to check if it is Strict BST\n9 to check if it is Complete BST\n10 for Binary Search Recursively\n11 for Binary Search Recursively\n12 to add to Binary Tree Iteratively\n13 to add to Binary Tree Recursively\n14 to find Largest element in BT\n15 to count number of nodes in BT\n");
 
 	do{
 		printf("Enter choice : ");
@@ -130,6 +130,19 @@ int main(void) {
 
 			break;
 		case 11:
+			// Binary Search Tree Recursively
+			printf("Enter a value to search\n");
+			scanf("%d", &ele);
+
+			if(binarySearchRecursion(root, ele) == 1){
+				printf("Exists\n");
+			}
+			else{
+				printf("Does not exist\n");
+			}
+
+			break;
+		case 12:
 			// Add Binary Tree Iteratively
 
 			printf("Enter a value\n");
@@ -137,7 +150,7 @@ int main(void) {
 
 			addBinaryTreeIteratively(&root, ele);
 			break;
-		case 12:
+		case 13:
 			// Add Binary Tree Recursively
 
 			printf("Enter a value\n");
@@ -146,7 +159,7 @@ int main(void) {
 			addBinaryTreeRecursively(&root, ele);
 
 			break;
-		case 13:
+		case 14:
 			// Largest Binary Tree
 			ele = largestBinaryTree(root);
 
@@ -154,7 +167,7 @@ int main(void) {
 
 			break;
 
-		case 14:
+		case 15:
 			// Count No of Binary Tree Nodes
 			ele = countBinaryTreeNodes(root);
 			printf("%d\n", ele);
@@ -410,7 +423,7 @@ void addBinaryTreeRecursively(Node **p, int v){
 	}
 	else{
 
-		printf("Inserting %d\n", (*p)->data);
+		printf("Inserting %d\n", v);
 
 		int choice;
 		printf("Enter choice : 1 for left or 2 for right insertion of %d: ", (*p)->data);
@@ -444,7 +457,7 @@ void addBinaryTreeIteratively(Node **p, int v){
 
 			previous = temp;
 
-			printf("Inserting %d\n", (*p)->data);
+			printf("Inserting after %d\n", v);
 
 
 			printf("Enter choice : 1 for left or 2 for right insertion of %d: ", (*p)->data);
