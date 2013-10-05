@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <math.h>
 #define SIZE 50
 
 
@@ -920,7 +921,7 @@ int evaluateExpressionTree(ExpNode *p){
 			case '%':
 				return x%y;
 			case '^':
-				return pow(x,y);
+				return (int)pow(x,y);
 			}
 
 			return 0;
